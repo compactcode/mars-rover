@@ -1,0 +1,1 @@
+puts "Welcome, what is the size of your target plateau?"
