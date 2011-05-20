@@ -1,3 +1,6 @@
 source :rubygems
 
-gem "aruba"
+group :test do
+  gem "aruba"
+  gem "rspec"
+end

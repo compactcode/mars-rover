@@ -1,5 +1,9 @@
 require 'aruba/cucumber'
 
-Before do
-  @dirs = ["."]
+module ArubaOverrides
+  def detect_ruby(cmd)
+    "ruby ../../#{cmd}"
+  end
 end
+
+World(ArubaOverrides)
