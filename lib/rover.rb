@@ -1,9 +1,11 @@
+require "direction"
+
 class Rover
   
-  attr_accessor :coordinate, :direction
+  attr_accessor :coordinates, :direction
   
-  def initialize(coordinate, direction)
-    @coordinate, @direction = [coordinate, direction]
+  def initialize(coordinates, direction)
+    @coordinates, @direction = [coordinates, direction]
   end
   
   def rotate_left
@@ -20,14 +22,14 @@ class Rover
   end
   
   def move
-    @coordinate = translate(@coordinate, Direction.to_coordinate(direction))
+    @coordinates = translate(@coordinates, Direction.to_coordinates(direction))
     self
   end
   
   protected
   
-    def translate(left, right)
-      left.zip(right).map { |axis| axis.reduce(:+) }
+    def translate(first, second)
+      first.zip(second).map { |axis| axis.reduce(:+) }
     end
   
 end

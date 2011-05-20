@@ -16,12 +16,12 @@ describe Rover do
   
   describe "#move" do
     it "should move the rover in the current direction" do
-      Rover.new([1, 1], Direction::North).move.coordinate.should == [1, 2]
+      Rover.new([1, 1], Direction::North).move.coordinates.should == [1, 2]
     end
   end
   
   it "should allow multiple commands to be issued" do
-    Rover.new([1, 1], Direction::North).rotate_left.rotate_right.move.coordinate.should == [1, 2]
+    Rover.new([1, 1], Direction::North).rotate_left.rotate_right.move.coordinates.should == [1, 2]
   end
   
 end
