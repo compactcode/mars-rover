@@ -9,10 +9,10 @@ def parse_rover(bounds, rover)
   Rover.new(bounds, parse_coordinates(rover), Direction.parse(rover.split.last))
 end
 
-input    = File.new("input.txt", "r")
-bounds   = parse_coordinates(input.gets)
-rover    = parse_rover(bounds, input.gets)
+infile = File.new("input.txt", "r")
+bounds = parse_coordinates(infile.gets)
 
-rover.execute_commands(input.gets)
-
-puts "#{rover.coordinates.join(" ")} #{Direction.print(rover.direction)}"
+while (line = infile.gets)
+  rover = parse_rover(bounds, line).execute_commands(infile.gets)  
+  puts "#{rover.coordinates.join(" ")} #{Direction.print(rover.direction)}"
+end
