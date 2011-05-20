@@ -4,8 +4,8 @@ class Rover
   
   attr_accessor :coordinates, :direction
   
-  def initialize(plateau, coordinates, direction)
-    @plateau, @coordinates, @direction = [plateau, coordinates, direction]
+  def initialize(bounds, coordinates, direction)
+    @bounds, @coordinates, @direction = [bounds, coordinates, direction]
   end
   
   def rotate_left
@@ -18,7 +18,7 @@ class Rover
   
   def move
     target_coordinates = translate(@coordinates, Direction.to_coordinates(direction))
-    @coordinates = target_coordinates if @plateau.contains_coordinates(target_coordinates)
+    @coordinates = target_coordinates if within_bounds(target_coordinates)
     self
   end
   
@@ -45,6 +45,10 @@ class Rover
   
     def translate(first, second)
       first.zip(second).map { |axis| axis.reduce(:+) }
+    end
+    
+    def within_bounds(coordinates)
+      coordinates[0] < @bounds[0] && coordinates[1] < @bounds[1]
     end
   
 end

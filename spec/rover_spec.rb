@@ -21,6 +21,12 @@ describe Rover do
     it "should not move the rover if it is at the edge of the plateau" do
       create_rover([5, 5]).move.coordinates.should == [5, 5]
     end
+    it "should not move the rover if it is at the pushing the upper edge of the plateau" do
+      create_rover([5, 5]).move.coordinates.should == [5, 5]
+    end
+    it "should not move the rover if it is at the pushing the outer upper edge of the plateau" do
+      create_rover([5, 5]).rotate_right.move.coordinates.should == [5, 5]
+    end
   end
   
   describe "#execute_commands" do
@@ -40,7 +46,7 @@ describe Rover do
   end
   
   def create_rover(start_coordinates = [1, 1])
-    Rover.new(Plateau.new([5, 5]), start_coordinates, Direction::North)
+    Rover.new([5, 5], start_coordinates, Direction::North)
   end
   
 end
