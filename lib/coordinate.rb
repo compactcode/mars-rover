@@ -1,12 +1,5 @@
 class Coordinate
   
-  Translations = {
-    Direction::North => [0,  1],
-    Direction::East  => [1,  0],
-    Direction::South => [0, -1],
-    Direction::West  => [-1, 0]
-  }
-  
   attr_accessor :x, :y
   
   def initialize(x, y)
@@ -14,8 +7,8 @@ class Coordinate
   end
   
   def translate(direction)
-    @x += Translations[direction][0]
-    @y += Translations[direction][1]
+    @x += Math.sin(direction).to_i
+    @y += Math.cos(direction).to_i
     self
   end
   
