@@ -19,13 +19,15 @@ class Direction
     rotate(0.5 * Math::PI)
   end
   
-  def to_coordinates
+  def to_coordinate
     [Math.sin(@radians).to_i, Math.cos(@radians).to_i]
   end
   
   def to_s
     Mapping.invert[@radians]
   end
+  
+  protected
   
     def rotate(rotation)
       @radians = (@radians + rotation) % (2.0 * Math::PI)

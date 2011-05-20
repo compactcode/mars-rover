@@ -1,18 +1,12 @@
 class Rover
   
-  attr_accessor :coordinates, :direction
+  attr_accessor :coordinate, :direction
   
-  def initialize(bounds, coordinates, direction)
-    @bounds, @coordinates, @direction = [bounds, coordinates, direction]
+  def initialize(bounds, coordinate, direction)
+    @bounds, @coordinate, @direction = [Coordinate.new(bounds), Coordinate.new(coordinate), Direction.new(direction)]
   end
   
-  def move
-    target_coordinates = translate(@coordinates, @direction.to_coordinates)
-    @coordinates = target_coordinates if within_bounds(target_coordinates)
-    self
-  end
-  
-  def execute_commands(commands)
+  def execute(commands)
     commands.chars.each do |command|
       case command
       when "L"
@@ -20,20 +14,15 @@ class Rover
       when "R"
         @direction.rotate_right
       when "M"
-        move
+        @coordinate.translate(@direction.to_coordinate)
+        @coordinate.ensure_within(@bounds)
       end
     end
     self
   end
   
-  protected
-  
-    def translate(first, second)
-      first.zip(second).map { |axis| axis.reduce(:+) }
-    end
-    
-    def within_bounds(coordinates)
-      coordinates[0] <= @bounds[0] && coordinates[1] <= @bounds[1]
-    end
+  def to_s
+    [@coordinate, @direction].join(" ")
+  end
   
 end
