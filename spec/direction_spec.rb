@@ -42,18 +42,18 @@ describe Direction do
     
   end
   
-  describe "#to_coordinate_translation" do
+  describe "#to_coordinate" do
     it "should create a translation for moving north" do
-      Direction.to_coordinate_translation(Direction::North).should == [0, 1]
+      Direction.to_coordinate(Direction::North).should == [0, 1]
     end
     it "should create a translation for moving east" do
-      Direction.to_coordinate_translation(Direction::East).should == [1, 0]
+      Direction.to_coordinate(Direction::East).should == [1, 0]
     end
     it "should create a translation for moving south" do
-      Direction.to_coordinate_translation(Direction::South).should == [0, -1]
+      Direction.to_coordinate(Direction::South).should == [0, -1]
     end
     it "should create a translation for moving west" do
-      Direction.to_coordinate_translation(Direction::West).should == [-1, 0]
+      Direction.to_coordinate(Direction::West).should == [-1, 0]
     end
   end
   

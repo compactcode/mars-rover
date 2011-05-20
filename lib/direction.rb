@@ -14,7 +14,7 @@ class Direction
     (direction + rotation) % (2.0 * Math::PI)
   end
   
-  def self.to_coordinate_translation(direction)
+  def self.to_coordinate(direction)
     [Math.sin(direction).to_i, Math.cos(direction).to_i]
   end
     

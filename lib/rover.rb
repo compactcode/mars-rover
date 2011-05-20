@@ -20,8 +20,14 @@ class Rover
   end
   
   def move
-    @coordinate.translate(@direction)
+    @coordinate = translate(@coordinate, Direction.to_coordinate(direction))
     self
   end
+  
+  protected
+  
+    def translate(left, right)
+      left.zip(right).map { |axis| axis.reduce(:+) }
+    end
   
 end
