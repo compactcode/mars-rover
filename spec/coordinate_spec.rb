@@ -15,6 +15,9 @@ describe Coordinate do
     it "should allow translation to the west" do
       Coordinate.new(1,1).translate(Direction::West).should == Coordinate.new(0, 1)
     end
+    it "should be chainable" do
+      Coordinate.new(1,1).translate(Direction::West).translate(Direction::East).should == Coordinate.new(1, 1)
+    end
   end
   
 end
