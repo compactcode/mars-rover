@@ -6,22 +6,17 @@ class Direction
     "S" => 1.0 * Math::PI,
     "W" => 1.5 * Math::PI
   }
-  
-  class Rotation
-    Left  = 1.5 * Math::PI
-    Right = 0.5 * Math::PI
-  end  
-    
+
   def initialize(direction)
     @radians = Mapping[direction]
   end
   
   def rotate_left
-    rotate(Rotation::Left)
+    rotate(1.5 * Math::PI)
   end
 
   def rotate_right
-    rotate(Rotation::Right)
+    rotate(0.5 * Math::PI)
   end
   
   def to_coordinates
