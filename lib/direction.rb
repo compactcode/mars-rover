@@ -1,36 +1,40 @@
 class Direction
   
-  North = 0.0 * Math::PI
-  East  = 0.5 * Math::PI
-  South = 1.0 * Math::PI
-  West  = 1.5 * Math::PI
-  
   Mapping = {
-    North => "N",
-    East  => "E",
-    South => "S",
-    West  => "W"
+    "N" => 0.0 * Math::PI,
+    "E" => 0.5 * Math::PI,
+    "S" => 1.0 * Math::PI,
+    "W" => 1.5 * Math::PI
   }
   
   class Rotation
     Left  = 1.5 * Math::PI
     Right = 0.5 * Math::PI
   end  
-  
-  def self.parse(input)
-    Mapping.invert[input]
+    
+  def initialize(direction)
+    @radians = Mapping[direction]
   end
   
-  def self.print(direction)
-    Mapping[direction]
+  def rotate_left
+    rotate(Rotation::Left)
+  end
+
+  def rotate_right
+    rotate(Rotation::Right)
   end
   
-  def self.rotate(direction, rotation)
-    (direction + rotation) % (2.0 * Math::PI)
+  def to_coordinates
+    [Math.sin(@radians).to_i, Math.cos(@radians).to_i]
   end
   
-  def self.to_coordinates(direction)
-    [Math.sin(direction).to_i, Math.cos(direction).to_i]
+  def to_s
+    Mapping.invert[@radians]
   end
+  
+    def rotate(rotation)
+      @radians = (@radians + rotation) % (2.0 * Math::PI)
+      self
+    end
     
 end

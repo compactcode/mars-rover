@@ -6,7 +6,7 @@ def parse_coordinates(coordinates)
 end
 
 def parse_rover(bounds, rover)
-  Rover.new(bounds, parse_coordinates(rover), Direction.parse(rover.split.last))
+  Rover.new(bounds, parse_coordinates(rover), Direction.new(rover.split.last))
 end
 
 infile = File.new("input.txt", "r")
@@ -14,5 +14,5 @@ bounds = parse_coordinates(infile.gets)
 
 while (line = infile.gets)
   rover = parse_rover(bounds, line).execute_commands(infile.gets)  
-  puts "#{rover.coordinates.join(" ")} #{Direction.print(rover.direction)}"
+  puts "#{rover.coordinates.join(" ")} #{rover.direction}"
 end

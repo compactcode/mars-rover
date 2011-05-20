@@ -6,16 +6,8 @@ class Rover
     @bounds, @coordinates, @direction = [bounds, coordinates, direction]
   end
   
-  def rotate_left
-    rotate(Direction::Rotation::Left)
-  end
-  
-  def rotate_right
-    rotate(Direction::Rotation::Right)
-  end
-  
   def move
-    target_coordinates = translate(@coordinates, Direction.to_coordinates(direction))
+    target_coordinates = translate(@coordinates, @direction.to_coordinates)
     @coordinates = target_coordinates if within_bounds(target_coordinates)
     self
   end
@@ -24,9 +16,9 @@ class Rover
     commands.chars.each do |command|
       case command
       when "L"
-        rotate_left
+        @direction.rotate_left
       when "R"
-        rotate_right
+        @direction.rotate_right
       when "M"
         move
       end
@@ -35,11 +27,6 @@ class Rover
   end
   
   protected
-  
-    def rotate(rotation)
-      @direction = Direction.rotate(@direction, rotation)
-      self    
-    end
   
     def translate(first, second)
       first.zip(second).map { |axis| axis.reduce(:+) }
