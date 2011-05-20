@@ -1,19 +1,18 @@
 class Coordinate
   
-  attr_accessor :x, :y
+  attr_accessor :value
   
   def initialize(x, y)
-    @x, @y = [x, y]
+    @value = [x, y]
   end
   
   def translate(direction)
-    @x += Math.sin(direction).to_i
-    @y += Math.cos(direction).to_i
+    @value = @value.zip(Direction.to_coordinate_translation(direction)).map{ |axis| axis.reduce(:+) }
     self
   end
   
   def ==(other)
-    @x == other.x && @y == other.y
+    @value == other.value
   end
   
 end

@@ -42,4 +42,19 @@ describe Direction do
     
   end
   
+  describe "#to_coordinate_translation" do
+    it "should create a translation for moving north" do
+      Direction.to_coordinate_translation(Direction::North).should == [0, 1]
+    end
+    it "should create a translation for moving east" do
+      Direction.to_coordinate_translation(Direction::East).should == [1, 0]
+    end
+    it "should create a translation for moving south" do
+      Direction.to_coordinate_translation(Direction::South).should == [0, -1]
+    end
+    it "should create a translation for moving west" do
+      Direction.to_coordinate_translation(Direction::West).should == [-1, 0]
+    end
+  end
+  
 end
