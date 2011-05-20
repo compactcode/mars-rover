@@ -1,5 +1,3 @@
-require "direction"
-
 class Rover
   
   attr_accessor :coordinates, :direction
@@ -48,7 +46,7 @@ class Rover
     end
     
     def within_bounds(coordinates)
-      coordinates[0] < @bounds[0] && coordinates[1] < @bounds[1]
+      coordinates[0] <= @bounds[0] && coordinates[1] <= @bounds[1]
     end
   
 end

@@ -5,10 +5,25 @@ class Direction
   South = 1.0 * Math::PI
   West  = 1.5 * Math::PI
   
+  Mapping = {
+    North => "N",
+    East  => "E",
+    South => "S",
+    West  => "W"
+  }
+  
   class Rotation
     Left  = 1.5 * Math::PI
     Right = 0.5 * Math::PI
   end  
+  
+  def self.parse(input)
+    Mapping.invert[input]
+  end
+  
+  def self.print(direction)
+    Mapping[direction]
+  end
   
   def self.rotate(direction, rotation)
     (direction + rotation) % (2.0 * Math::PI)

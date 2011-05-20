@@ -2,8 +2,22 @@ require "spec_helper"
 
 describe Direction do
   
+  describe "#parse" do
+    it "should convert 'N' to north" do
+      Direction.parse("N").should == Direction::North
+    end
+    it "should convert 'E' to north" do
+      Direction.parse("E").should == Direction::East
+    end
+    it "should convert 'S' to north" do
+      Direction.parse("S").should == Direction::South
+    end
+    it "should convert 'W' to north" do
+      Direction.parse("W").should == Direction::West
+    end
+  end
+  
   describe "#rotate" do
-    
     describe "north" do
       it "should change to west when rotating left" do
         Direction.rotate(Direction::North, Direction::Rotation::Left).should == Direction::West
@@ -12,7 +26,6 @@ describe Direction do
         Direction.rotate(Direction::North, Direction::Rotation::Right).should == Direction::East
       end
     end
-    
     describe "east" do
       it "should change to north when rotating left" do
         Direction.rotate(Direction::East, Direction::Rotation::Left).should == Direction::North
@@ -21,7 +34,6 @@ describe Direction do
         Direction.rotate(Direction::East, Direction::Rotation::Right).should == Direction::South
       end
     end
-    
     describe "south" do
       it "should change to west when rotating left" do
         Direction.rotate(Direction::South, Direction::Rotation::Left).should == Direction::East
@@ -30,7 +42,6 @@ describe Direction do
         Direction.rotate(Direction::South, Direction::Rotation::Right).should == Direction::West
       end
     end
-    
     describe "west" do
       it "should change to south when rotating left" do
         Direction.rotate(Direction::West, Direction::Rotation::Left).should == Direction::South
@@ -39,7 +50,6 @@ describe Direction do
         Direction.rotate(Direction::West, Direction::Rotation::Right).should == Direction::North
       end
     end
-    
   end
   
   describe "#to_coordinates" do

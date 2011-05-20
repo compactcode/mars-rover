@@ -18,6 +18,9 @@ describe Rover do
     it "should move the rover in the current direction" do
       create_rover.move.coordinates.should == [1, 2]
     end
+    it "should move the rover in the current direction to the upper edge" do
+      create_rover([4, 4]).move.coordinates.should == [4, 5]
+    end
     it "should not move the rover if it is at the edge of the plateau" do
       create_rover([5, 5]).move.coordinates.should == [5, 5]
     end
