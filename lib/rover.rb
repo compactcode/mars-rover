@@ -1,6 +1,6 @@
 class Rover
   
-  attr_accessor :direction
+  attr_accessor :coordinate, :direction
   
   def initialize(coordinate, direction)
     @coordinate, @direction = [coordinate, direction]
@@ -17,6 +17,11 @@ class Rover
   def rotate(rotation)
     @direction = Direction.rotate(@direction, rotation)
     self    
+  end
+  
+  def move
+    @coordinate.translate(@direction)
+    self
   end
   
 end
