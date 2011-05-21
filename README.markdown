@@ -1,4 +1,4 @@
-## Getting Started
+## Running
 
 All input is read from the file named input.txt
 
@@ -9,7 +9,6 @@ All input is read from the file named input.txt
 * You are on *nix
 * You have ruby installed
 * You have bundler installed
-
 * Only valid rover commands are issued
 * Rovers do not collide
 
