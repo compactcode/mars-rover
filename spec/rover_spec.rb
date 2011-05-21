@@ -3,25 +3,22 @@ require "spec_helper"
 describe Rover do
   
   describe "#move" do
-    it "should move the rover in the current direction" do
+    it "should move the rover" do
       create_rover.execute("M").coordinate.to_s.should == "1 2"
     end
-    it "should move the rover in the current direction to the upper edge" do
-      create_rover("4, 4").execute("M").coordinate.to_s.should == "4 5"
+    it "should move the rove up to the edge of a plateau" do
+      create_rover("4 4").execute("M").coordinate.to_s.should == "4 5"
     end
-    it "should not move the rover if it is at the edge of the plateau" do
+    it "should not move the rover north if it is at the north edge of a plateau" do
       create_rover("5 5").execute("M").coordinate.to_s.should == "5 5"
     end
-    it "should not move the rover if it is at the pushing the north of the plateau" do
-      create_rover("5 5").execute("M").coordinate.to_s.should == "5 5"
-    end
-    it "should not move the rover if it is at the pushing the east edge of the plateau" do
+    it "should not move the rover east if it is at the east edge of a plateau" do
       create_rover("5 5").execute("RM").coordinate.to_s.should == "5 5"
     end
-    it "should not move the rover if it is at the pushing the south edge of the plateau" do
+    it "should not move the rover south if it is at the south edge of a plateau" do
       create_rover("0 0").execute("RRMM").coordinate.to_s.should == "0 0"
     end
-    it "should not move the rover if it is at the pushing the west edge of the plateau" do
+    it "should not move the rover west if it is at the west edge of a plateau" do
       create_rover("0 0").execute("LMM").coordinate.to_s.should == "0 0"
     end
   end
