@@ -11,9 +11,9 @@ class Coordinate
     @y += other.last
   end
   
-  def ensure_within(bounds)
-    @x = [@x, bounds.x].min
-    @y = [@y, bounds.y].min
+  def ensure_within(upper)
+    @x = [[@x, upper.x].min, 0].max
+    @y = [[@y, upper.y].min, 0].max
   end
   
   def to_s

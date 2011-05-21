@@ -12,11 +12,17 @@ describe Rover do
     it "should not move the rover if it is at the edge of the plateau" do
       create_rover("5 5").execute("M").coordinate.to_s.should == "5 5"
     end
-    it "should not move the rover if it is at the pushing the upper edge of the plateau" do
+    it "should not move the rover if it is at the pushing the north of the plateau" do
       create_rover("5 5").execute("M").coordinate.to_s.should == "5 5"
     end
-    it "should not move the rover if it is at the pushing the outer upper edge of the plateau" do
+    it "should not move the rover if it is at the pushing the east edge of the plateau" do
       create_rover("5 5").execute("RM").coordinate.to_s.should == "5 5"
+    end
+    it "should not move the rover if it is at the pushing the south edge of the plateau" do
+      create_rover("0 0").execute("RRMM").coordinate.to_s.should == "0 0"
+    end
+    it "should not move the rover if it is at the pushing the west edge of the plateau" do
+      create_rover("0 0").execute("LMM").coordinate.to_s.should == "0 0"
     end
   end
   
